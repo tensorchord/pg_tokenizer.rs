@@ -1,9 +1,6 @@
 use std::ffi::{CStr, CString};
 
-use pgrx::{
-    pg_sys::{DatumGetPointer, Int32GetDatum, PointerGetDatum},
-    IntoDatum,
-};
+use pgrx::IntoDatum;
 
 use super::TokenFilter;
 
@@ -37,17 +34,16 @@ impl TokenFilter for PgDictTokenFilter {
             let res = pgrx::pg_sys::FunctionCall3Coll(
                 &raw mut dict.lexize,
                 pgrx::pg_sys::InvalidOid,
-                PointerGetDatum(dict.dictData),
-                PointerGetDatum(token.as_ptr().cast()),
-                Int32GetDatum(token.len().try_into().unwrap()),
+                dict.dictData.into(),
+                token.as_ptr().into(),
+                <i32 as Into<_>>::into(token.len().try_into().unwrap()),
             );
             if res.is_null() {
                 // not recognized
                 return vec![token];
             }
-            let res = DatumGetPointer(res);
 
-            let mut lexeme_ptr: *const pgrx::pg_sys::TSLexeme = res.cast_const().cast();
+            let mut lexeme_ptr: *const pgrx::pg_sys::TSLexeme = res.cast_mut_ptr();
             let mut results = Vec::new();
             while !(*lexeme_ptr).lexeme.is_null() {
                 let str = CStr::from_ptr((*lexeme_ptr).lexeme);
@@ -55,7 +51,7 @@ impl TokenFilter for PgDictTokenFilter {
                 pgrx::pg_sys::pfree((*lexeme_ptr).lexeme.cast());
                 lexeme_ptr = lexeme_ptr.add(1);
             }
-            pgrx::pg_sys::pfree(res.cast());
+            pgrx::pg_sys::pfree(res.cast_mut_ptr());
 
             results
         }
