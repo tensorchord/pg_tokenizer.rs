@@ -17,8 +17,9 @@ We provide some builtin models to use directly.
 
 We support importing models using [Hugging Face](https://huggingface.co/) config. You can use the `create_huggingface_model` function to import a model.
 
-```sh
-wget -q -O - https://huggingface.co/google-bert/bert-base-uncased/resolve/main/tokenizer.json | xargs -I {} psql -c "SELECT create_huggingface_model('model1', :content);" --set=content={}
+```sql
+\set content `wget -q -O - https://huggingface.co/google-bert/bert-base-uncased/resolve/main/tokenizer.json`
+SELECT create_huggingface_model('bert_import', :'content');
 ```
 
 ## Lindera model
