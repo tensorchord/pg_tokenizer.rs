@@ -2,7 +2,7 @@ statement ok
 BEGIN;
 
 statement ok
-SELECT create_synonym('syn1', $$
+SELECT tokenizer_catalog.create_synonym('syn1', $$
 pgsql postgres postgresql
 index indices
 $$);

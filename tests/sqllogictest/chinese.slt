@@ -9,12 +9,12 @@ CREATE TABLE documents (
 );
 
 statement ok
-SELECT create_text_analyzer('text_analyzer1', $$
+SELECT tokenizer_catalog.create_text_analyzer('text_analyzer1', $$
 [pre_tokenizer.jieba]
 $$);
 
 statement ok
-SELECT create_custom_model_tokenizer_and_trigger(
+SELECT tokenizer_catalog.create_custom_model_tokenizer_and_trigger(
     tokenizer_name => 'tokenizer1',
     model_name => 'model1',
     text_analyzer_name => 'text_analyzer1',

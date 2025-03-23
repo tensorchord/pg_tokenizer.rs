@@ -2,7 +2,7 @@ statement ok
 BEGIN;
 
 statement ok
-SELECT create_stopwords('stop1', $$
+SELECT tokenizer_catalog.create_stopwords('stop1', $$
 it
 is
 an
