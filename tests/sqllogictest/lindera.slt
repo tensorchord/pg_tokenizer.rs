@@ -1,4 +1,4 @@
-# need ipadic flag for lindera
+# need lindera-ipadic flag
 
 statement ok
 BEGIN;
