@@ -45,7 +45,7 @@ validator = { version = "0.20.0", features = ["derive"] }
 pgrx-tests = "=0.13.1"
 
 [patch.crates-io]
-pgrx = { git = "https://github.com/silver-ymz/pgrx", branch = "patch-to-pg_tokenizer" }
+pgrx = { git = "https://github.com/tensorchord/pgrx", branch = "patch-to-pg_tokenizer" }
 
 [profile.release]
 opt-level = 3
