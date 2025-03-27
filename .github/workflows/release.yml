@@ -110,8 +110,8 @@ jobs:
           platforms: "linux/amd64,linux/arm64"
           file: ./docker/binary.Dockerfile
           tags: |
-            tensorchord/pg_tokenizer-binary:pg${{ matrix.version }}-v${{ env.SEMVER }}-${{ env.PLATFORM }}
-            ghcr.io/tensorchord/pg_tokenizer-binary:pg${{ matrix.version }}-v${{ env.SEMVER }}-${{ env.PLATFORM }}
+            tensorchord/pg_tokenizer-binary:pg${{ matrix.version }}-v${{ env.SEMVER }}
+            ghcr.io/tensorchord/pg_tokenizer-binary:pg${{ matrix.version }}-v${{ env.SEMVER }}
           build-args: |
             PG_VERSION=${{ matrix.version }}
             SEMVER=${{ env.SEMVER }}
