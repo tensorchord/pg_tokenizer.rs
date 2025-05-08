@@ -27,7 +27,7 @@ lindera-cc-cedict = ["lindera/cc-cedict"]
 anyhow = "1.0.97"
 dashmap = "6.1.0"
 jieba-rs = "0.7.2"
-lindera = "0.37.0"
+lindera = "0.42.2"
 pgrx = "=0.14.1"
 regex = "1.11.1"
 rust-stemmers = { git = "https://github.com/tensorchord/rust-stemmers.git", rev = "51696378e352688b7ffd4fface615370ff5e8768" }
