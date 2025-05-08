@@ -1,3 +1,4 @@
+mod ngram;
 mod pg_dict;
 mod skip_non_alphanumeric;
 mod stemmer;
@@ -6,6 +7,7 @@ mod synonym;
 
 use std::sync::Arc;
 
+use ngram::{Ngram, NgramConfig};
 use pg_dict::PgDictTokenFilter;
 use serde::{Deserialize, Serialize};
 use skip_non_alphanumeric::SkipNonAlphanumeric;
@@ -32,6 +34,8 @@ pub enum TokenFilterConfig {
     Stopwords(String),
     PgDict(String),
     Synonym(String),
+    #[serde(rename = "ngram")]
+    NGram(NgramConfig),
 }
 
 pub fn get_token_filter(config: TokenFilterConfig) -> TokenFilterPtr {
@@ -41,5 +45,6 @@ pub fn get_token_filter(config: TokenFilterConfig) -> TokenFilterPtr {
         TokenFilterConfig::Stopwords(name) => stopwords::get_stopwords_token_filter(&name),
         TokenFilterConfig::PgDict(name) => Arc::new(PgDictTokenFilter::new(&name)),
         TokenFilterConfig::Synonym(name) => synonym::get_synonym_token_filter(&name),
+        TokenFilterConfig::NGram(config) => Arc::new(Ngram::new(config)),
     }
 }

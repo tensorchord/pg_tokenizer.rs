@@ -11,7 +11,6 @@ name = "pgrx_embed_pg_tokenizer"
 path = "./src/bin/pgrx_embed.rs"
 
 [features]
-pg12 = ["pgrx/pg12", "pgrx-tests/pg12"]
 pg13 = ["pgrx/pg13", "pgrx-tests/pg13"]
 pg14 = ["pgrx/pg14", "pgrx-tests/pg14"]
 pg15 = ["pgrx/pg15", "pgrx-tests/pg15"]
@@ -29,7 +28,7 @@ anyhow = "1.0.97"
 dashmap = "6.1.0"
 jieba-rs = "0.7.2"
 lindera = "0.37.0"
-pgrx = "=0.13.1"
+pgrx = "=0.14.1"
 regex = "1.11.1"
 rust-stemmers = { git = "https://github.com/tensorchord/rust-stemmers.git", rev = "51696378e352688b7ffd4fface615370ff5e8768" }
 serde = { version = "1.0.218", features = ["derive"] }
@@ -42,10 +41,7 @@ unicode-segmentation = "1.12.0"
 validator = { version = "0.20.0", features = ["derive"] }
 
 [dev-dependencies]
-pgrx-tests = "=0.13.1"
-
-[patch.crates-io]
-pgrx = { git = "https://github.com/tensorchord/pgrx", branch = "patch-to-pg_tokenizer" }
+pgrx-tests = "=0.14.1"
 
 [profile.release]
 opt-level = 3

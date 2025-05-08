@@ -1,0 +1,29 @@
+statement ok
+BEGIN;
+
+statement ok
+SELECT tokenizer_catalog.create_text_analyzer('test_ngram', $$
+pre_tokenizer = "unicode_segmentation"
+[[token_filters]]
+[token_filters.ngram]
+$$);
+
+query T
+SELECT tokenizer_catalog.apply_text_analyzer('Quick fox', 'test_ngram');
+----
+{Q,Qu,u,ui,i,ic,c,ck,k,f,fo,o,ox,x}
+
+statement ok
+SELECT tokenizer_catalog.create_text_analyzer('test_ngram2', $$
+pre_tokenizer = "unicode_segmentation"
+[[token_filters]]
+[token_filters.ngram]
+max_gram = 3
+min_gram = 2
+preserve_original = true
+$$);
+
+query T
+SELECT tokenizer_catalog.apply_text_analyzer('Quick fox', 'test_ngram2');
+----
+{Qu,Qui,ui,uic,ic,ick,ck,Quick,fo,fox,ox}

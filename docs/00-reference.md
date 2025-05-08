@@ -92,12 +92,21 @@ You can choose only one of the above options for each character filter.
 | stopwords             | String      | Stopwords name, builtin: `lucene_english`, `nltk_english`, `iso_english`                                                                                                            |
 | synonym               | String      | Synonym name                                                                                                                                                                        |
 | pg_dict               | String      | Using [postgres text search dictionary](https://www.postgresql.org/docs/current/textsearch-dictionaries.html). We currently support all dictionaries except `Thesaurus Dictionary`. |
+| ngram                 | Table       | N-gram tokenizer, see [Options for `ngram`](#options-for-ngram)                                                                                                                     |
 
 You can choose only one of the above options for each token filter.
 
 #### Supported values for `stemmer`
 
 arabic, armenian, basque, catalan, danish, dutch, english_porter, english_porter2, estonian, finnish, french, german, greek, hindi, hungarian, indonesian, irish, italian, lithuanian, nepali, norwegian, portuguese, romanian, russian, serbian, spanish, swedish, tamil, turkish, yiddish
+
+#### Options for `ngram`
+
+| Key               | Type    | Description                                              |
+| ----------------- | ------- | -------------------------------------------------------- |
+| max_gram          | Integer | Maximum n-gram size, range: `1..=255`, default: `2`      |
+| min_gram          | Integer | Minimum n-gram size, range: `1..=255`, default: `1`      |
+| preserve_original | Boolean | Whether to preserve the original token, default: `false` |
 
 ### Options for `tokenizer`
 

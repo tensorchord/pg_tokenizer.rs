@@ -15,7 +15,7 @@ compile_error!("Target is not supported.");
 compiler_error!("PostgreSQL version must be selected.");
 
 #[pgrx::pg_guard]
-unsafe extern "C" fn _PG_init() {
+extern "C-unwind" fn _PG_init() {
     if unsafe { pgrx::pg_sys::IsUnderPostmaster } {
         pgrx::error!("pg_tokenizer must be loaded via shared_preload_libraries.");
     }
