@@ -8,6 +8,7 @@ on:
       - "assets/**"
       - "src/**"
       - "tests/**"
+      - "tools/**"
       - ".taplo.toml"
       - ".typos.toml"
       - "Cargo.lock"
