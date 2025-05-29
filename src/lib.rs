@@ -11,8 +11,14 @@ pub mod utils;
 #[cfg(not(all(target_endian = "little", target_pointer_width = "64")))]
 compile_error!("Target is not supported.");
 
-#[cfg(not(any(feature = "pg14", feature = "pg15", feature = "pg16", feature = "pg17")))]
-compiler_error!("PostgreSQL version must be selected.");
+#[cfg(not(any(
+    feature = "pg13",
+    feature = "pg14",
+    feature = "pg15",
+    feature = "pg16",
+    feature = "pg17"
+)))]
+compile_error!("PostgreSQL version must be selected.");
 
 #[pgrx::pg_guard]
 extern "C-unwind" fn _PG_init() {
