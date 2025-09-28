@@ -16,6 +16,7 @@ pg14 = ["pgrx/pg14", "pgrx-tests/pg14"]
 pg15 = ["pgrx/pg15", "pgrx-tests/pg15"]
 pg16 = ["pgrx/pg16", "pgrx-tests/pg16"]
 pg17 = ["pgrx/pg17", "pgrx-tests/pg17"]
+pg18 = ["pgrx/pg18", "pgrx-tests/pg18"]
 pg_test = []
 lindera-ipadic = ["lindera/ipadic"]
 lindera-ipadic-neologd = ["lindera/ipadic-neologd"]
@@ -28,7 +29,7 @@ anyhow = "1.0.97"
 dashmap = "6.1.0"
 jieba-rs = "0.7.2"
 lindera = "0.42.2"
-pgrx = "=0.14.1"
+pgrx = "=0.16.1"
 regex = "1.11.1"
 rust-stemmers = { git = "https://github.com/tensorchord/rust-stemmers.git", rev = "51696378e352688b7ffd4fface615370ff5e8768" }
 serde = { version = "1.0.218", features = ["derive"] }
@@ -41,7 +42,7 @@ unicode-segmentation = "1.12.0"
 validator = { version = "0.20.0", features = ["derive"] }
 
 [dev-dependencies]
-pgrx-tests = "=0.14.1"
+pgrx-tests = "=0.16.1"
 
 [profile.release]
 opt-level = 3
